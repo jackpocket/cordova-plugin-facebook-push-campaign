@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d18ed3f8-1915-4e0f-a47c-50f9e5daf0f1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ios/FacebookPushCampaign.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugin.xml" afterPath="$PROJECT_DIR$/plugin.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/FacebookPushCampaign.js" afterPath="$PROJECT_DIR$/www/FacebookPushCampaign.js" />
-    </list>
+    <list default="true" id="d18ed3f8-1915-4e0f-a47c-50f9e5daf0f1" name="Default" comment="" />
     <ignored path="FacebookPushCampaign.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,8 +44,8 @@
       <file leaf-file-name="FacebookPushCampaign.m" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ios/FacebookPushCampaign.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="56" selection-start-line="31" selection-start-column="56" selection-end-line="31" selection-end-column="56" />
+            <state relative-caret-position="195">
+              <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -247,12 +243,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1466540097434</updated>
-      <workItem from="1466540098927" duration="1524000" />
+      <workItem from="1466540098927" duration="2231000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1524000" />
+    <option name="totallyTimeSpent" value="2231000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1277" height="773" extended-state="6" />
@@ -313,8 +309,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ios/FacebookPushCampaign.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="56" selection-start-line="31" selection-start-column="56" selection-end-line="31" selection-end-column="56" />
+        <state relative-caret-position="195">
+          <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
           <folding />
         </state>
       </provider>

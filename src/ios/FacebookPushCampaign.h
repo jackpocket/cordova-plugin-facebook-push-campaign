@@ -1,7 +1,7 @@
 #import <Cordova/CDV.h>
 
-@interface ModusEcho : CDVPlugin
+@interface FacebookPushCampaign : CDVPlugin
 
-- (void)echo:(CDVInvokedUrlCommand*)command;
+- (void)register:(CDVInvokedUrlCommand*)command;
 
 @end

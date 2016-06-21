@@ -5,6 +5,8 @@
 
 - (void) register:(CDVInvokedUrlCommand *)command
 {
+    NSLog(@"Registering");
+    
     CDVPluginResult* pluginResult = nil;
     NSString* msg = [command.arguments objectAtIndex:0];
     
