@@ -1,18 +1,25 @@
 #import <Cordova/CDVPlugin.h>
 #import "FacebookPushCampaign.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
-@implementation CDVClipboard
+@implementation FacebookPushCampaign
 
 - (void) register:(CDVInvokedUrlCommand *)command
 {
-    NSLog(@"Registering");
-    
+    NSLog(@"JP Registering");
+
     CDVPluginResult* pluginResult = nil;
     NSString* msg = [command.arguments objectAtIndex:0];
-    
+
     if (msg == nil || [msg length] == 0) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     } else {
+
+        NSString* deviceToken = [msg dataUsingEncoding:NSUTF8StringEncoding];
+        [FBSDKAppEvents setPushNotificationsDeviceToken:deviceToken];
+
+        NSLog(@"%@", [NSString stringWithFormat:@"JP: APN Device Token=%@", deviceToken]);
+
         UIAlertView *toast = [
                               [UIAlertView alloc] initWithTitle:@""
                               message:msg
