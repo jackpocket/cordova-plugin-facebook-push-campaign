@@ -1,6 +1,7 @@
 #import <Cordova/CDVPlugin.h>
 #import "FacebookPushCampaign.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBNotifications/FBNotifications.h>
 
 @implementation FacebookPushCampaign
 
@@ -51,20 +52,50 @@
                               delegate:nil
                               cancelButtonTitle:nil
                               otherButtonTitles:nil, nil];
-        
+
         [toast show];
-        
+
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC),
                        dispatch_get_main_queue(), ^{
                            [toast dismissWithClickedButtonIndex:0 animated:YES];
                        });
-        
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK 
+
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                          messageAsString:msg];
     }
-    
-    [self.commandDelegate sendPluginResult:pluginResult 
+
+    [self.commandDelegate sendPluginResult:pluginResult
                                 callbackId:command.callbackId];
+}
+
+
+/// Present In-App Notification from remote notification (if present).
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
+
+    NSLog(@"JP: Did receive Notification");
+    //    for (id key in userInfo) {
+    //        NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
+    //    }
+
+    NSLog(@"Received notification: %@", userInfo);
+    //    NSLog(@"fb_push_card backdrop color a: %@", [[userInfo objectForKey:@"custom"] objectForKey:@"a"]);
+
+    //    NSLog(@"key: %@, value: %@", @"fb_push_card", [userInfo objectForKey:@"fb_push_card"]);
+    //    NSLog(@"key: %@, value: %@", @"fb_push_payload", [userInfo objectForKey:@"fb_push_payload"]);
+
+
+    [FBSDKAppEvents logPushNotificationOpen:userInfo];
+
+    FBNotificationsManager *notificationsManager = [FBNotificationsManager sharedManager];
+    [notificationsManager presentPushCardForRemoteNotificationPayload:userInfo
+                                                   fromViewController:nil
+                                                           completion:^(FBNCardViewController * _Nullable viewController, NSError * _Nullable error) {
+                                                               if (error) {
+                                                                   completionHandler(UIBackgroundFetchResultFailed);
+                                                               } else {
+                                                                   completionHandler(UIBackgroundFetchResultNewData);
+                                                               }
+                                                           }];
 }
 
 @end
