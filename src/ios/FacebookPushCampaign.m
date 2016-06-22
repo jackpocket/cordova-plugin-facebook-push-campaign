@@ -11,7 +11,7 @@
 //
 - (NSData *)stringToHexData: (NSString *) str
 {
-    int len = [str length] / 2;    // Target length
+    double len = [str length] / 2;    // Target length
     unsigned char *buf = malloc(len);
     unsigned char *whole_byte = buf;
     char byte_chars[3] = {'\0','\0','\0'};
@@ -68,34 +68,40 @@
                                 callbackId:command.callbackId];
 }
 
+- (void) didReceiveRemoteNotification:(CDVInvokedUrlCommand *)command
+{
+    NSLog(@"JP didReceiveRemoteNotification");
 
-/// Present In-App Notification from remote notification (if present).
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
+    CDVPluginResult* pluginResult = nil;
+    NSDictionary* msg = [command.arguments objectAtIndex:0];
 
-    NSLog(@"JP: Did receive Notification");
-    //    for (id key in userInfo) {
-    //        NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
-    //    }
+    NSLog(@"JP msg=%@", msg);
 
-    NSLog(@"Received notification: %@", userInfo);
-    //    NSLog(@"fb_push_card backdrop color a: %@", [[userInfo objectForKey:@"custom"] objectForKey:@"a"]);
+    FacebookPushCampaign* __weak weakSelf = self;
+    if (msg == nil) {
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+        [self.commandDelegate sendPluginResult:pluginResult
+                                    callbackId:command.callbackId];
+    } else {
+        FBNotificationsManager *notificationsManager = [FBNotificationsManager sharedManager];
+        [notificationsManager presentPushCardForRemoteNotificationPayload:msg
+                                                       fromViewController:nil
+                                                               completion:^(FBNCardViewController * _Nullable viewController, NSError * _Nullable error) {
+                                                                   if (error) {
+                                                                       NSLog(@"JP error");
 
-    //    NSLog(@"key: %@, value: %@", @"fb_push_card", [userInfo objectForKey:@"fb_push_card"]);
-    //    NSLog(@"key: %@, value: %@", @"fb_push_payload", [userInfo objectForKey:@"fb_push_payload"]);
+                                                                       CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+                                                                       [weakSelf.commandDelegate sendPluginResult:pluginResult
+                                                                                                   callbackId:command.callbackId];
+                                                                   } else {
+                                                                       NSLog(@"JP success");
 
-
-    [FBSDKAppEvents logPushNotificationOpen:userInfo];
-
-    FBNotificationsManager *notificationsManager = [FBNotificationsManager sharedManager];
-    [notificationsManager presentPushCardForRemoteNotificationPayload:userInfo
-                                                   fromViewController:nil
-                                                           completion:^(FBNCardViewController * _Nullable viewController, NSError * _Nullable error) {
-                                                               if (error) {
-                                                                   completionHandler(UIBackgroundFetchResultFailed);
-                                                               } else {
-                                                                   completionHandler(UIBackgroundFetchResultNewData);
-                                                               }
-                                                           }];
+                                                                       CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+                                                                       [weakSelf.commandDelegate sendPluginResult:pluginResult
+                                                                                                       callbackId:command.callbackId];
+                                                                   }
+                                                               }];
+    }
 }
 
 @end
