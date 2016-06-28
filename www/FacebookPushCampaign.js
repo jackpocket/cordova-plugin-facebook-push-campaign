@@ -10,13 +10,11 @@ exports.didReceivedNotification = function (arg0, success, error) {
   console.log("FacebookPushCampaign.didReceivedNotification()", arg0);
 
   // do some validation - make sure it adheres to the format!
-
-  exec(function () {
-    console.log('FacebookPushCampaign.didReceivedNotification -> success');
-    success && success();
-  }, function () {
-    console.log('FacebookPushCampaign.didReceivedNotification -> error');
-
-    error && error();
+  exec(function (notification) {
+    console.log('FacebookPushCampaign.didReceivedNotification -> success', notification);
+    success && success(notification);
+  }, function (e) {
+    console.error('FacebookPushCampaign.didReceivedNotification -> error', e);
+    error && error(e);
   }, "FacebookPushCampaign", "didReceiveRemoteNotification", [arg0]);
 };
