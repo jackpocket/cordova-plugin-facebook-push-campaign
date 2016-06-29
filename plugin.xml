@@ -17,6 +17,8 @@
         <header-file src="src/ios/FacebookPushCampaign.h"/>
 
         <!-- Facebook framework -->
+        <framework src="ImageIO.framework" />
+        <framework src="MobileCoreServices.framework" />
         <framework src="src/ios/FBNotifications/FBNotifications.framework" custom="true" />
     </platform>
 </plugin>
