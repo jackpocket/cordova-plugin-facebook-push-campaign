@@ -12,7 +12,11 @@
                 <param name="ios-package" value="FacebookPushCampaign"/>
             </feature>
         </config-file>
+
         <source-file src="src/ios/FacebookPushCampaign.m"/>
         <header-file src="src/ios/FacebookPushCampaign.h"/>
+
+        <!-- Facebook framework -->
+        <framework src="src/ios/FBNotifications/FBNotifications.framework" custom="true" />
     </platform>
 </plugin>
