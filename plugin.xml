@@ -17,7 +17,7 @@
         <header-file src="src/ios/FacebookPushCampaign.h"/>
 
         <!-- Depend on this fork until the https://github.com/jeduan/cordova-plugin-facebook4 upgrades to SDK v4.13 -->
-        <dependency id="cordova-plugin-facebook-push-campaign" url="https://github.com/jackpocket/cordova-plugin-facebook4.git" commit="d395d8fef2afdf6ea6ab36449488ff483a9043df" />
+        <dependency id="cordova-plugin-facebook4" url="https://github.com/jackpocket/cordova-plugin-facebook4.git" commit="d395d8fef2afdf6ea6ab36449488ff483a9043df" />
 
         <!-- Facebook framework -->
         <framework src="ImageIO.framework" />
