@@ -42,7 +42,7 @@
         NSData* deviceToken = [self stringToHexData:msg];
         [FBSDKAppEvents setPushNotificationsDeviceToken:deviceToken];
 
-        NSLog(@"FacebookPushCampaign: Register Succedeed. Token = %@", deviceToken);
+        NSLog(@"FacebookPushCampaign: Register Succeeded. Token = %@", deviceToken);
 
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                          messageAsString:msg];
