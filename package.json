@@ -1,0 +1,28 @@
+{
+  "name": "cordova-plugin-facebook-push-campaign",
+  "version": "1.0.0",
+  "description": "The phonegap wrapper around the new Facebook Push Notifications/In-App Notifications platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackpocket/cordova-plugin-facebook-push-campaign.git"
+  },
+  "keywords": [
+    "ios",
+    "cordova",
+    "phonegap",
+    "facebook",
+    "facebook-inapp-campaign",
+    "facebook-push-campaign",
+    "facebook-campaign"
+  ],
+  "author": "Gabriel C. Troia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jackpocket/cordova-plugin-facebook-push-campaign/issues"
+  },
+  "homepage": "https://github.com/jackpocket/cordova-plugin-facebook-push-campaign#readme"
+}
